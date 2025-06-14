@@ -281,7 +281,11 @@ export class MemStorage implements IStorage {
 
   async createUser(insertUser: InsertUser): Promise<User> {
     const id = this.currentUserId++;
-    const user: User = { ...insertUser, id };
+    const user: User = { 
+      ...insertUser, 
+      id,
+      role: insertUser.role || "user"
+    };
     this.users.set(id, user);
     return user;
   }
@@ -297,7 +301,12 @@ export class MemStorage implements IStorage {
 
   async createCategory(insertCategory: InsertCategory): Promise<Category> {
     const id = this.currentCategoryId++;
-    const category: Category = { ...insertCategory, id };
+    const category: Category = { 
+      ...insertCategory, 
+      id,
+      description: insertCategory.description || null,
+      iconName: insertCategory.iconName || "fas fa-box"
+    };
     this.categories.set(id, category);
     return category;
   }
@@ -327,6 +336,12 @@ export class MemStorage implements IStorage {
     const equipment: Equipment = { 
       ...insertEquipment, 
       id,
+      currentStock: insertEquipment.currentStock || 0,
+      minimumStock: insertEquipment.minimumStock || 0,
+      unit: insertEquipment.unit || "個",
+      batchNumber: insertEquipment.batchNumber || null,
+      notes: insertEquipment.notes || null,
+      isActive: insertEquipment.isActive !== undefined ? insertEquipment.isActive : true,
       expirationDate: insertEquipment.expirationDate ? new Date(insertEquipment.expirationDate) : null,
       createdAt: now,
       updatedAt: now
@@ -388,6 +403,8 @@ export class MemStorage implements IStorage {
     const usage: UsageHistory = { 
       ...insertUsage, 
       id,
+      reason: insertUsage.reason || null,
+      notes: insertUsage.notes || null,
       timestamp: new Date()
     };
     this.usageHistory.set(id, usage);
@@ -412,6 +429,8 @@ export class MemStorage implements IStorage {
     const alert: Alert = { 
       ...insertAlert, 
       id,
+      isActive: insertAlert.isActive !== undefined ? insertAlert.isActive : true,
+      threshold: insertAlert.threshold || null,
       createdAt: new Date()
     };
     this.alerts.set(id, alert);

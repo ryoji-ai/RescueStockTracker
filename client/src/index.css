@@ -115,11 +115,11 @@
   }
 
   .alert-badge-warning {
-    @apply bg-warning;
+    @apply bg-orange-500;
   }
 
   .alert-badge-success {
-    @apply bg-success;
+    @apply bg-green-500;
   }
 
   .activity-item {

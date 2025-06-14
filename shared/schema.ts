@@ -65,6 +65,9 @@ export const insertUserSchema = createInsertSchema(users).omit({
 
 export const insertCategorySchema = createInsertSchema(categories).omit({
   id: true,
+}).extend({
+  description: z.string().nullable().optional(),
+  iconName: z.string().optional(),
 });
 
 export const insertEquipmentSchema = createInsertSchema(equipment).omit({
@@ -73,16 +76,28 @@ export const insertEquipmentSchema = createInsertSchema(equipment).omit({
   updatedAt: true,
 }).extend({
   expirationDate: z.string().optional().nullable(),
+  currentStock: z.number().optional(),
+  minimumStock: z.number().optional(),
+  unit: z.string().optional(),
+  batchNumber: z.string().nullable().optional(),
+  notes: z.string().nullable().optional(),
+  isActive: z.boolean().optional(),
 });
 
 export const insertUsageHistorySchema = createInsertSchema(usageHistory).omit({
   id: true,
   timestamp: true,
+}).extend({
+  reason: z.string().nullable().optional(),
+  notes: z.string().nullable().optional(),
 });
 
 export const insertAlertSchema = createInsertSchema(alerts).omit({
   id: true,
   createdAt: true,
+}).extend({
+  isActive: z.boolean().optional(),
+  threshold: z.number().nullable().optional(),
 });
 
 // 型定義
