@@ -73,19 +73,18 @@ export default function Sidebar() {
         })}
       </nav>
 
-      {/* User Profile */}
+      {/* Organization Info */}
       <div className="p-4 border-t border-border">
         <div className="flex items-center space-x-3 px-4 py-3">
-          <div className="w-8 h-8 bg-muted rounded-full flex items-center justify-center">
-            <i className="fas fa-user text-muted-foreground text-sm"></i>
+          <div className="w-10 h-10 bg-gradient-to-br from-blue-500 to-blue-600 rounded-lg flex items-center justify-center shadow-md">
+            <i className="fas fa-shield-alt text-white text-lg"></i>
           </div>
           <div className="flex-1">
-            <p className="text-sm font-medium text-foreground">田中 太郎</p>
-            <p className="text-xs text-muted-foreground">救急隊員</p>
+            <p className="text-sm font-semibold text-foreground">総社市消防本部</p>
+            <p className="text-xs text-muted-foreground bg-blue-50 dark:bg-blue-950 px-2 py-1 rounded-md inline-block mt-1">
+              救急係
+            </p>
           </div>
-          <button className="text-muted-foreground hover:text-foreground">
-            <i className="fas fa-cog"></i>
-          </button>
         </div>
       </div>
     </aside>
