@@ -1,0 +1,190 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;600;700&display=swap');
+
+:root {
+  --background: hsl(0, 0%, 98%);
+  --foreground: hsl(240, 10%, 3.9%);
+  --muted: hsl(210, 40%, 95%);
+  --muted-foreground: hsl(215, 25%, 27%);
+  --popover: hsl(0, 0%, 100%);
+  --popover-foreground: hsl(240, 10%, 3.9%);
+  --card: hsl(0, 0%, 100%);
+  --card-foreground: hsl(240, 10%, 3.9%);
+  --border: hsl(214, 32%, 91%);
+  --input: hsl(214, 32%, 91%);
+  --primary: hsl(210, 83%, 53%);
+  --primary-foreground: hsl(0, 0%, 98%);
+  --secondary: hsl(210, 40%, 95%);
+  --secondary-foreground: hsl(215, 25%, 27%);
+  --accent: hsl(210, 40%, 95%);
+  --accent-foreground: hsl(215, 25%, 27%);
+  --destructive: hsl(0, 84%, 60%);
+  --destructive-foreground: hsl(210, 40%, 98%);
+  --success: hsl(142, 76%, 36%);
+  --success-foreground: hsl(355, 7%, 97%);
+  --warning: hsl(32, 95%, 44%);
+  --warning-foreground: hsl(210, 40%, 98%);
+  --ring: hsl(210, 83%, 53%);
+  --radius: 0.75rem;
+
+  /* カスタムカラー */
+  --primary-blue: hsl(210, 83%, 53%);
+  --primary-blue-dark: hsl(210, 83%, 43%);
+  --secondary-gray: hsl(215, 25%, 27%);
+  --surface-white: hsl(0, 0%, 100%);
+  --background-gray: hsl(0, 0%, 98%);
+}
+
+.dark {
+  --background: hsl(240, 10%, 3.9%);
+  --foreground: hsl(0, 0%, 98%);
+  --muted: hsl(240, 3.7%, 15.9%);
+  --muted-foreground: hsl(240, 5%, 64.9%);
+  --popover: hsl(240, 10%, 3.9%);
+  --popover-foreground: hsl(0, 0%, 98%);
+  --card: hsl(240, 10%, 3.9%);
+  --card-foreground: hsl(0, 0%, 98%);
+  --border: hsl(240, 3.7%, 15.9%);
+  --input: hsl(240, 3.7%, 15.9%);
+  --primary: hsl(210, 83%, 53%);
+  --primary-foreground: hsl(0, 0%, 98%);
+  --secondary: hsl(240, 3.7%, 15.9%);
+  --secondary-foreground: hsl(0, 0%, 98%);
+  --accent: hsl(240, 3.7%, 15.9%);
+  --accent-foreground: hsl(0, 0%, 98%);
+  --destructive: hsl(0, 62.8%, 30.6%);
+  --destructive-foreground: hsl(0, 0%, 98%);
+  --success: hsl(142, 76%, 36%);
+  --success-foreground: hsl(355, 7%, 97%);
+  --warning: hsl(32, 95%, 44%);
+  --warning-foreground: hsl(210, 40%, 98%);
+  --ring: hsl(240, 4.9%, 83.9%);
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground;
+    font-family: 'Noto Sans JP', system-ui, sans-serif;
+    font-feature-settings: "kern";
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    font-family: 'Noto Sans JP', system-ui, sans-serif;
+    font-weight: 600;
+  }
+}
+
+@layer components {
+  .sidebar-nav-item {
+    @apply flex items-center space-x-3 px-4 py-3 rounded-lg font-medium transition-colors;
+  }
+
+  .sidebar-nav-item-active {
+    @apply text-primary bg-blue-50 dark:bg-blue-950 dark:text-blue-400;
+  }
+
+  .sidebar-nav-item-inactive {
+    @apply text-gray-600 hover:bg-gray-50 dark:text-gray-300 dark:hover:bg-gray-800;
+  }
+
+  .dashboard-card {
+    @apply bg-card rounded-xl shadow-sm border border-border p-6;
+  }
+
+  .stat-card {
+    @apply dashboard-card;
+  }
+
+  .stat-card-icon {
+    @apply w-12 h-12 rounded-lg flex items-center justify-center text-xl;
+  }
+
+  .alert-badge {
+    @apply text-white text-xs px-2 py-1 rounded-full font-medium;
+  }
+
+  .alert-badge-critical {
+    @apply bg-destructive;
+  }
+
+  .alert-badge-warning {
+    @apply bg-warning;
+  }
+
+  .alert-badge-success {
+    @apply bg-success;
+  }
+
+  .activity-item {
+    @apply flex items-center space-x-4 py-3 border-b border-border last:border-b-0;
+  }
+
+  .activity-icon {
+    @apply w-10 h-10 rounded-full flex items-center justify-center;
+  }
+
+  .activity-icon-usage {
+    @apply bg-gray-100 text-gray-600 dark:bg-gray-800 dark:text-gray-400;
+  }
+
+  .activity-icon-restock {
+    @apply bg-green-100 text-green-600 dark:bg-green-900 dark:text-green-400;
+  }
+
+  .critical-item {
+    @apply flex items-center justify-between p-4 rounded-lg border;
+  }
+
+  .critical-item-expiring {
+    @apply bg-red-50 border-red-100 dark:bg-red-950 dark:border-red-900;
+  }
+
+  .critical-item-low-stock {
+    @apply bg-orange-50 border-orange-100 dark:bg-orange-950 dark:border-orange-900;
+  }
+
+  .category-overview-card {
+    @apply text-center p-4 bg-muted rounded-lg;
+  }
+
+  .category-icon {
+    @apply w-12 h-12 bg-primary rounded-lg mx-auto mb-3 flex items-center justify-center text-white;
+  }
+}
+
+@layer utilities {
+  .text-primary-blue {
+    color: var(--primary-blue);
+  }
+
+  .text-secondary-gray {
+    color: var(--secondary-gray);
+  }
+
+  .bg-primary-blue {
+    background-color: var(--primary-blue);
+  }
+
+  .bg-primary-blue-dark {
+    background-color: var(--primary-blue-dark);
+  }
+
+  .bg-surface-white {
+    background-color: var(--surface-white);
+  }
+
+  .bg-background-gray {
+    background-color: var(--background-gray);
+  }
+
+  .hover\:bg-primary-blue-dark:hover {
+    background-color: var(--primary-blue-dark);
+  }
+}
