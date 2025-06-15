@@ -1,6 +1,11 @@
-import { app } from '../../server/index.js';
+const { registerRoutes } = require('../../server/routes');
+const express = require('express');
 
-export const handler = async (event, context) => {
+const app = express();
+app.use(express.json());
+registerRoutes(app);
+
+exports.handler = async (event, context) => {
   const { path, httpMethod, headers, body, queryStringParameters } = event;
   
   const req = {
@@ -42,8 +47,17 @@ export const handler = async (event, context) => {
     };
 
     try {
-      app(req, mockRes);
+      const originalUrl = req.url;
+      req.originalUrl = originalUrl;
+      req.path = originalUrl.split('?')[0];
+      
+      app(req, mockRes, () => {
+        response.statusCode = 404;
+        response.body = JSON.stringify({ error: 'Not Found' });
+        resolve(response);
+      });
     } catch (error) {
+      console.error('Handler error:', error);
       response.statusCode = 500;
       response.body = JSON.stringify({ error: 'Internal Server Error' });
       resolve(response);
